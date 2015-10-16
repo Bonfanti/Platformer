@@ -19,9 +19,9 @@ public class follow : MonoBehaviour {
 		//print (camera.position );
 		float x = target.position.x;
 		float halfwidth = Camera.main.aspect * Camera.main.orthographicSize;
-		if (x < camera.position.x - halfwidth*7/8)
+		if (x < camera.position.x - halfwidth*3/8)
 			cx -= .1F;
-		if(x > camera.position.x)cx+=.1F;
+		if(x > camera.position.x + halfwidth*1/8)cx+=.1F;
 
 		camera.position = new Vector3(cx,camera.position.y,-10);
 	

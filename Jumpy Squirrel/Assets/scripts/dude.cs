@@ -43,6 +43,8 @@ public class dude : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D other)
 	{
+		if (other.tag == "RonaldStrump")
+			Destroy (other.gameObject);
 		canJump = true;
 	}
 	
