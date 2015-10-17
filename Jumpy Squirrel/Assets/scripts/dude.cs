@@ -15,6 +15,7 @@ public class dude : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		rb = GetComponent<Rigidbody2D> ();
+
 		jumpCount = 0;
 	
 	}
@@ -43,13 +44,19 @@ public class dude : MonoBehaviour {
 			else rb.velocity += new Vector2 (0, 16);
 			jumpCount++;
 		}
+		if (GetComponent<Rigidbody2D> ().position.y < -4f) {
+			Application.LoadLevel("Lose");
+		}
 	
 	}
 
 	void OnTriggerEnter2D(Collider2D other)
 	{
-		if (other.tag == "RonaldStrump")
+		if (other.tag == "RonaldStrump") {
 			Destroy (other.gameObject);
+			Application.LoadLevel("Win");
+
+		}
 		canJump = true;
 		jumpCount = 0;
 	}
