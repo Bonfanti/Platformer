@@ -9,12 +9,13 @@ public class dude : MonoBehaviour {
 	private bool left;
 	private bool right;
 	private bool canJump=false;
+	private int jumpCount;
 
 
 	// Use this for initialization
 	void Start () {
 		rb = GetComponent<Rigidbody2D> ();
-
+		jumpCount = 0;
 	
 	}
 	
@@ -36,8 +37,12 @@ public class dude : MonoBehaviour {
 		else if(right)rb.velocity = new Vector2 (velocity, vy);
 		else rb.velocity = new Vector2 (0, vy);
 
-		if (Input.GetKeyDown ("space") && canJump)
-			rb.velocity += new Vector2 (0, 8);
+
+		if (Input.GetKeyDown ("space") && canJump && jumpCount < 2) {
+			if(jumpCount == 0)rb.velocity += new Vector2 (0, 8);
+			else rb.velocity += new Vector2 (0, 16);
+			jumpCount++;
+		}
 	
 	}
 
@@ -46,6 +51,7 @@ public class dude : MonoBehaviour {
 		if (other.tag == "RonaldStrump")
 			Destroy (other.gameObject);
 		canJump = true;
+		jumpCount = 0;
 	}
 	
 	void OnTriggerExit2D(Collider2D other)
