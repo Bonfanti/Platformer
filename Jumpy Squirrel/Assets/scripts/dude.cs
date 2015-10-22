@@ -4,19 +4,19 @@ using System.Collections;
 public class dude : MonoBehaviour {
 
 	public float velocity=5F;
+	public Transform cam;
 
 	private Rigidbody2D rb;
 	private bool left;
 	private bool right;
 	private bool canJump=false;
-	private int jumpCount;
+	private float rot = 1.0F;
 
 
 	// Use this for initialization
 	void Start () {
 		rb = GetComponent<Rigidbody2D> ();
-
-		jumpCount = 0;
+		rb.fixedAngle = true;
 	
 	}
 	
@@ -33,21 +33,30 @@ public class dude : MonoBehaviour {
 
 
 		float vy = rb.velocity.y;
-		if (left && right) rb.velocity = new Vector2 (0, vy);
-		else if(left)rb.velocity = new Vector2 (-velocity, vy);
+		if (left && right)
+			rb.velocity = new Vector2 (0, vy);
+		else if (left) {
+			float halfwidth = Camera.main.aspect * Camera.main.orthographicSize;
+			if (this.transform.position.x > cam.transform.position.x - halfwidth)
+				rb.velocity = new Vector2 (-velocity, vy);
+			else
+				rb.velocity = new Vector2 (0, vy);
+		}
 		else if(right)rb.velocity = new Vector2 (velocity, vy);
 		else rb.velocity = new Vector2 (0, vy);
 
 
-		if (Input.GetKeyDown ("space") && canJump && jumpCount < 2) {
-			if(jumpCount == 0)rb.velocity += new Vector2 (0, 8);
-			else rb.velocity += new Vector2 (0, 16);
-			jumpCount++;
+		if (Input.GetKeyDown ("space") && canJump) {
+			rb.velocity += new Vector2 (0, 16);
 		}
 		if (GetComponent<Rigidbody2D> ().position.y < -4f) {
 			Application.LoadLevel("Lose");
 		}
-	
+
+		if (rb.rotation == 10.0F || rb.rotation == -10.0F)
+			rot = -rot;
+		rb.rotation += rot;
+		
 	}
 
 	void OnTriggerEnter2D(Collider2D other)
@@ -58,7 +67,6 @@ public class dude : MonoBehaviour {
 
 		}
 		canJump = true;
-		jumpCount = 0;
 	}
 	
 	void OnTriggerExit2D(Collider2D other)
