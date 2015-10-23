@@ -35,13 +35,7 @@ public class dude : MonoBehaviour {
 		float vy = rb.velocity.y;
 		if (left && right)
 			rb.velocity = new Vector2 (0, vy);
-		else if (left) {
-			float halfwidth = Camera.main.aspect * Camera.main.orthographicSize;
-			if (this.transform.position.x > cam.transform.position.x - halfwidth)
-				rb.velocity = new Vector2 (-velocity, vy);
-			else
-				rb.velocity = new Vector2 (0, vy);
-		}
+		else if (left) rb.velocity = new Vector2 (-velocity, vy);
 		else if(right)rb.velocity = new Vector2 (velocity, vy);
 		else rb.velocity = new Vector2 (0, vy);
 
@@ -49,8 +43,8 @@ public class dude : MonoBehaviour {
 		if (Input.GetKeyDown ("space") && canJump) {
 			rb.velocity += new Vector2 (0, 16);
 		}
-		if (GetComponent<Rigidbody2D> ().position.y < -4f) {
-			Application.LoadLevel("Lose");
+		if (rb.position.y < -15f) {
+			rb.position = new Vector3(6.89F, 0.34F, 0);
 		}
 
 		if (rb.rotation == 10.0F || rb.rotation == -10.0F)
