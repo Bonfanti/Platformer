@@ -5,10 +5,11 @@ public class dude : MonoBehaviour {
 
 	public float velocity=5F;
 	public Transform cam;
+	public Sprite orig, fist;
 
 	private Rigidbody2D rb;
-	private bool left;
-	private bool right;
+	private bool left, a;
+	private bool right, d;
 	private bool canJump=false;
 	private float rot = 1.0F;
 
@@ -22,6 +23,14 @@ public class dude : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if (Input.GetKeyDown ("a"))
+			a = true;
+		if (Input.GetKeyUp ("a"))
+			a = false;
+		if (Input.GetKeyDown ("d"))
+			d = true;
+		if (Input.GetKeyUp ("d"))
+			d = false;
 		if (Input.GetKeyDown ("left"))
 			left = true;
 		if (Input.GetKeyUp ("left"))
@@ -33,10 +42,10 @@ public class dude : MonoBehaviour {
 
 
 		float vy = rb.velocity.y;
-		if (left && right)
+		if ((left && right) || (a && d) || (left && d) || (right && a))
 			rb.velocity = new Vector2 (0, vy);
-		else if (left) rb.velocity = new Vector2 (-velocity, vy);
-		else if(right)rb.velocity = new Vector2 (velocity, vy);
+		else if (left || a) rb.velocity = new Vector2 (-velocity, vy);
+		else if(right || d)rb.velocity = new Vector2 (velocity, vy);
 		else rb.velocity = new Vector2 (0, vy);
 
 
@@ -50,6 +59,13 @@ public class dude : MonoBehaviour {
 		if (rb.rotation == 10.0F || rb.rotation == -10.0F)
 			rot = -rot;
 		rb.rotation += rot;
+
+		if (Input.GetKeyDown ("x")) {
+			GetComponent<SpriteRenderer>().sprite = fist;
+		}
+		if (Input.GetKeyUp ("x")) {
+			GetComponent<SpriteRenderer> ().sprite = orig;
+		}
 		
 	}
 
