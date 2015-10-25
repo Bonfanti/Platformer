@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class dude : MonoBehaviour {
@@ -52,10 +52,10 @@ public class dude : MonoBehaviour {
 		if (Input.GetKeyDown ("space") && canJump) {
 			rb.velocity += new Vector2 (0, 16);
 		}
-		if (rb.position.y < -15f) {
-			rb.position = new Vector3(6.89F, 0.34F, 0);
-		}
-
+		//if (rb.position.y < -15f) {
+			//rb.position = new Vector3(6.89F, 0.34F, 0);
+		//}
+		//print(canJump);
 		if (rb.rotation == 10.0F || rb.rotation == -10.0F)
 			rot = -rot;
 		rb.rotation += rot;
@@ -65,6 +65,9 @@ public class dude : MonoBehaviour {
 		}
 		if (Input.GetKeyUp ("x")) {
 			GetComponent<SpriteRenderer> ().sprite = orig;
+		}
+		if (GetComponent<Rigidbody2D> ().position.y < -15f) {
+			Application.LoadLevel("Lose");
 		}
 		
 	}
