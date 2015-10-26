@@ -3,7 +3,7 @@ using System.Collections;
 
 public class dude : MonoBehaviour {
 
-	public float velocity=5F;
+	public float velocity, jumpVelocity;
 	public Transform cam;
 	public Sprite orig, fist;
 
@@ -12,13 +12,14 @@ public class dude : MonoBehaviour {
 	private bool right, d;
 	private bool canJump=false;
 	private float rot = 1.0F;
+	private Vector3 startPos;
 
 
 	// Use this for initialization
 	void Start () {
 		rb = GetComponent<Rigidbody2D> ();
 		rb.fixedAngle = true;
-	
+		startPos = rb.position;
 	}
 	
 	// Update is called once per frame
@@ -50,7 +51,7 @@ public class dude : MonoBehaviour {
 
 
 		if (Input.GetKeyDown ("space") && canJump) {
-			rb.velocity += new Vector2 (0, 16);
+			rb.velocity += new Vector2 (0, jumpVelocity);
 		}
 		//if (rb.position.y < -15f) {
 			//rb.position = new Vector3(6.89F, 0.34F, 0);
@@ -68,6 +69,7 @@ public class dude : MonoBehaviour {
 		}
 		if (GetComponent<Rigidbody2D> ().position.y < -15f) {
 			Application.LoadLevel("Lose");
+			//rb.position = startPos;
 		}
 		
 	}

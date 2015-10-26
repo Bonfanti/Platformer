@@ -4,8 +4,10 @@ using System.Collections;
 public class Trigger : MonoBehaviour {
 
 	public Trigger[] keys;
+	
 	private bool unlocked = false;
 	private bool otherKeys, playerOnTrigger = false, opened = false;
+	//private int timesCastleLoaded = 0;
 	// Use this for initialization
 	void Start () {
 		if (keys.Length == 0) {
@@ -34,7 +36,8 @@ public class Trigger : MonoBehaviour {
 		if (playerOnTrigger && !opened && unlocked) {
 			if(Input.GetKeyDown ("up")) {
 				opened = true;
-				print ("Door Opened");
+				print (Application.loadedLevel);
+				Application.LoadLevel(Application.loadedLevel + 4);
 			}
 		}
 	}
