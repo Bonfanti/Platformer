@@ -36,7 +36,6 @@ public class Trigger : MonoBehaviour {
 		if (playerOnTrigger && !opened && unlocked) {
 			if(Input.GetKeyDown ("up")) {
 				opened = true;
-				print (Application.loadedLevel);
 				Application.LoadLevel(Application.loadedLevel + 4);
 			}
 		}
