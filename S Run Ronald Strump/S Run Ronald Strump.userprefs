@@ -1,8 +1,10 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\scripts\startGame.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\scripts\Intro.cs">
     <Files>
+      <File FileName="Assets\scripts\TriggerBattle.cs" Line="15" Column="35" />
       <File FileName="Assets\scripts\startGame.cs" Line="17" Column="1" />
+      <File FileName="Assets\scripts\Intro.cs" Line="41" Column="56" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

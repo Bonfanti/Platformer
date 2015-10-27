@@ -12,7 +12,7 @@ public class TriggerBattle : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (isInTrigger && Input.GetKeyDown ("up")) {
-			if(Application.loadedLevel != 7) Application.LoadLevel (Application.loadedLevel - 3);
+			if(Application.loadedLevel != 8) Application.LoadLevel (Application.loadedLevel - 3);
 			else Application.LoadLevel ("win");
 		}
 	}
