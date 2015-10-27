@@ -81,7 +81,7 @@ public class dude : MonoBehaviour {
 			Application.LoadLevel("Win");
 
 		}
-		canJump = true;
+		else if(other.transform.position.y < this.transform.position.y - 1.83F) canJump = true;
 	}
 	
 	void OnTriggerExit2D(Collider2D other)
