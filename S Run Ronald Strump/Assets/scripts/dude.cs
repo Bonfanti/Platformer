@@ -5,7 +5,7 @@ public class dude : MonoBehaviour {
 
 	public float velocity, jumpVelocity;
 	public Transform cam;
-	public Sprite orig, fist;
+	public Sprite orig, fist, origleft, fistleft;
 
 	private Rigidbody2D rb;
 	private bool left, a;
@@ -24,29 +24,48 @@ public class dude : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetKeyDown ("a"))
+		if (Input.GetKeyDown ("a")) {
 			a = true;
-		if (Input.GetKeyUp ("a"))
+			if(!d && !right) GetComponent<SpriteRenderer> ().sprite = origleft;
+		}
+		if (Input.GetKeyUp ("a")) {
 			a = false;
-		if (Input.GetKeyDown ("d"))
+			if(right || d) GetComponent<SpriteRenderer> ().sprite = orig;
+		}
+		if (Input.GetKeyDown ("d")) {
 			d = true;
-		if (Input.GetKeyUp ("d"))
+			if(!a && !left) GetComponent<SpriteRenderer> ().sprite = orig;
+		}
+		if (Input.GetKeyUp ("d")) {
 			d = false;
-		if (Input.GetKeyDown ("left"))
+			if(left || a) GetComponent<SpriteRenderer> ().sprite = origleft;
+		}
+		if (Input.GetKeyDown ("left")) {
 			left = true;
-		if (Input.GetKeyUp ("left"))
+			if(!d && !right) GetComponent<SpriteRenderer> ().sprite = origleft;
+		}
+		if (Input.GetKeyUp ("left")) {
 			left = false;
-		if (Input.GetKeyDown ("right"))
+			if(right || d) GetComponent<SpriteRenderer> ().sprite = orig;
+		}
+		if (Input.GetKeyDown ("right")) {
 			right = true;
-		if (Input.GetKeyUp ("right"))
+			if(!a && !left) GetComponent<SpriteRenderer> ().sprite = orig;
+		}
+		if (Input.GetKeyUp ("right")) {
 			right = false;
+			if(left || a) GetComponent<SpriteRenderer> ().sprite = origleft;
+		}
 
 
 		float vy = rb.velocity.y;
 		if ((left && right) || (a && d) || (left && d) || (right && a))
 			rb.velocity = new Vector2 (0, vy);
-		else if (left || a) rb.velocity = new Vector2 (-velocity, vy);
-		else if(right || d)rb.velocity = new Vector2 (velocity, vy);
+		else if (left || a) {
+			rb.velocity = new Vector2 (-velocity, vy);
+		} else if (right || d) {
+			rb.velocity = new Vector2 (velocity, vy);
+		}
 		else rb.velocity = new Vector2 (0, vy);
 
 
@@ -62,10 +81,12 @@ public class dude : MonoBehaviour {
 		rb.rotation += rot;
 
 		if (Input.GetKeyDown ("x")) {
-			GetComponent<SpriteRenderer>().sprite = fist;
+			if(right || d) GetComponent<SpriteRenderer>().sprite = fist;
+			else if(left || a) GetComponent<SpriteRenderer>().sprite = fistleft;
 		}
 		if (Input.GetKeyUp ("x")) {
-			GetComponent<SpriteRenderer> ().sprite = orig;
+			if(right || d) GetComponent<SpriteRenderer> ().sprite = orig;
+			else if(left || a) GetComponent<SpriteRenderer> ().sprite = origleft;
 		}
 		if (GetComponent<Rigidbody2D> ().position.y < -15f) {
 			Application.LoadLevel("Lose");

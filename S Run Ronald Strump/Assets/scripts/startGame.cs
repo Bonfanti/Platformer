@@ -11,6 +11,6 @@ public class startGame : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (Input.GetMouseButtonDown (0) || Input.GetKeyDown ("space"))
-			Application.LoadLevel ("intro");
+			Application.LoadLevel (Application.loadedLevel == 0 ? "intro" : "game");
 	}
 }
