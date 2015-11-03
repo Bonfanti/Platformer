@@ -83,13 +83,13 @@ public class dude : MonoBehaviour {
 		rb.rotation += rot;
 
 		if (Input.GetKeyDown ("x")) {
-			if(right || d) GetComponent<SpriteRenderer>().sprite = fist;
-			else if(left || a) GetComponent<SpriteRenderer>().sprite = fistleft;
+			if(right || d || GetComponent<SpriteRenderer>().sprite.name == "MrsStrump") GetComponent<SpriteRenderer>().sprite = fist;
+			else if(left || a || GetComponent<SpriteRenderer>().sprite.name == "MrsStrumpleft") GetComponent<SpriteRenderer>().sprite = fistleft;
 			if(kill) Destroy (enemie);
 		}
 		if (Input.GetKeyUp ("x")) {
-			if(right || d) GetComponent<SpriteRenderer> ().sprite = orig;
-			else if(left || a) GetComponent<SpriteRenderer> ().sprite = origleft;
+			if(right || d || GetComponent<SpriteRenderer>().sprite.name == "Fist") GetComponent<SpriteRenderer> ().sprite = orig;
+			else if(left || a || GetComponent<SpriteRenderer>().sprite.name == "Fistleft") GetComponent<SpriteRenderer> ().sprite = origleft;
 		}
 		if (GetComponent<Rigidbody2D> ().position.y < -15f) {
 			Application.LoadLevel("Lose");
