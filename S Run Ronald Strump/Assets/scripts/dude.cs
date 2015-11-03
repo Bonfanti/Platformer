@@ -13,7 +13,7 @@ public class dude : MonoBehaviour {
 	private bool canJump=false;
 	private bool kill = false;
 	private float rot = 1.0F;
-	private Vector3 startPos;
+	//private Vector3 startPos;
 	private GameObject enemie;
 
 
@@ -21,7 +21,7 @@ public class dude : MonoBehaviour {
 	void Start () {
 		rb = GetComponent<Rigidbody2D> ();
 		rb.fixedAngle = true;
-		startPos = rb.position;
+		//startPos = rb.position;
 	}
 	
 	// Update is called once per frame

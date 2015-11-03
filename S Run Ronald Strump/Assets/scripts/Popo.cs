@@ -11,7 +11,7 @@ public class Popo : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		rb = GetComponent<Rigidbody2D> ();
-		deathClock = velocity >= 20 ? 0.3F : 0.2F;
+		deathClock = (velocity >= 20 && velocity != 50) ? 0.2F : 0.1F;
 	}
 	
 	// Update is called once per frame
@@ -20,7 +20,7 @@ public class Popo : MonoBehaviour {
 			rb.velocity = new Vector2 (velocity, 0);
 		} else
 			rb.velocity = new Vector2 (-velocity, 0);
-		if (time != 0.0F && Time.time - time > (velocity >= 20 ? 0.3F : 0.2F))
+		if (time != 0.0F && Time.time - time > deathClock)
 			Application.LoadLevel ("lose");
 	}
 
@@ -28,7 +28,6 @@ public class Popo : MonoBehaviour {
 	{
 		if (other.tag == "Player") {
 			time = Time.time;
-			print ("lel");
 		}
 	}
 
