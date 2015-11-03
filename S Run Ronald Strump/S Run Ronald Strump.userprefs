@@ -1,14 +1,14 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\scripts\dude.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\scripts\Popo.cs">
     <Files>
-      <File FileName="Assets\scripts\follow.cs" Line="30" Column="1" />
-      <File FileName="Assets\scripts\dude.cs" Line="49" Column="64" />
+      <File FileName="Assets\scripts\Popo.cs" Line="14" Column="45" />
+      <File FileName="Assets\scripts\follow.cs" Line="1" Column="1" />
+      <File FileName="Assets\scripts\dude.cs" Line="88" Column="30" />
       <File FileName="Assets\scripts\TriggerBattle.cs" Line="1" Column="1" />
-      <File FileName="Assets\scripts\startGame.cs" Line="17" Column="1" />
+      <File FileName="Assets\scripts\startGame.cs" Line="1" Column="1" />
       <File FileName="Assets\scripts\Intro.cs" Line="1" Column="1" />
-      <File FileName="Assets\scripts\followCastle.cs" Line="28" Column="1" />
-      <File FileName="Assets\scripts\Popo.cs" Line="6" Column="12" />
+      <File FileName="Assets\scripts\followCastle.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

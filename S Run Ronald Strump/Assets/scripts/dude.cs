@@ -11,8 +11,10 @@ public class dude : MonoBehaviour {
 	private bool left, a;
 	private bool right, d;
 	private bool canJump=false;
+	private bool kill = false;
 	private float rot = 1.0F;
 	private Vector3 startPos;
+	private GameObject enemie;
 
 
 	// Use this for initialization
@@ -83,6 +85,7 @@ public class dude : MonoBehaviour {
 		if (Input.GetKeyDown ("x")) {
 			if(right || d) GetComponent<SpriteRenderer>().sprite = fist;
 			else if(left || a) GetComponent<SpriteRenderer>().sprite = fistleft;
+			if(kill) Destroy (enemie);
 		}
 		if (Input.GetKeyUp ("x")) {
 			if(right || d) GetComponent<SpriteRenderer> ().sprite = orig;
@@ -102,11 +105,17 @@ public class dude : MonoBehaviour {
 			Application.LoadLevel("Win");
 
 		}
-		else if(other.transform.position.y < this.transform.position.y - 1.83F) canJump = true;
+		if(other.transform.position.y < this.transform.position.y - 1.83F) canJump = true;
+		if (other.tag == "Popo") {
+			kill = true;
+			enemie = other.gameObject;
+		}
 	}
 	
 	void OnTriggerExit2D(Collider2D other)
 	{
 		canJump = false;
+		if (other.tag == "Popo")
+			kill = false;
 	}
 }
