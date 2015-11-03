@@ -26,76 +26,90 @@ public class dude : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetKeyDown ("a")) {
-			a = true;
-			if(!d && !right) GetComponent<SpriteRenderer> ().sprite = origleft;
-		}
-		if (Input.GetKeyUp ("a")) {
-			a = false;
-			if(right || d) GetComponent<SpriteRenderer> ().sprite = orig;
-		}
-		if (Input.GetKeyDown ("d")) {
-			d = true;
-			if(!a && !left) GetComponent<SpriteRenderer> ().sprite = orig;
-		}
-		if (Input.GetKeyUp ("d")) {
-			d = false;
-			if(left || a) GetComponent<SpriteRenderer> ().sprite = origleft;
-		}
-		if (Input.GetKeyDown ("left")) {
-			left = true;
-			if(!d && !right) GetComponent<SpriteRenderer> ().sprite = origleft;
-		}
-		if (Input.GetKeyUp ("left")) {
-			left = false;
-			if(right || d) GetComponent<SpriteRenderer> ().sprite = orig;
-		}
-		if (Input.GetKeyDown ("right")) {
-			right = true;
-			if(!a && !left) GetComponent<SpriteRenderer> ().sprite = orig;
-		}
-		if (Input.GetKeyUp ("right")) {
-			right = false;
-			if(left || a) GetComponent<SpriteRenderer> ().sprite = origleft;
-		}
+		if (Application.loadedLevel != 12) {
+			if (Input.GetKeyDown ("a")) {
+				a = true;
+				if (!d && !right)
+					GetComponent<SpriteRenderer> ().sprite = origleft;
+			}
+			if (Input.GetKeyUp ("a")) {
+				a = false;
+				if (right || d)
+					GetComponent<SpriteRenderer> ().sprite = orig;
+			}
+			if (Input.GetKeyDown ("d")) {
+				d = true;
+				if (!a && !left)
+					GetComponent<SpriteRenderer> ().sprite = orig;
+			}
+			if (Input.GetKeyUp ("d")) {
+				d = false;
+				if (left || a)
+					GetComponent<SpriteRenderer> ().sprite = origleft;
+			}
+			if (Input.GetKeyDown ("left")) {
+				left = true;
+				if (!d && !right)
+					GetComponent<SpriteRenderer> ().sprite = origleft;
+			}
+			if (Input.GetKeyUp ("left")) {
+				left = false;
+				if (right || d)
+					GetComponent<SpriteRenderer> ().sprite = orig;
+			}
+			if (Input.GetKeyDown ("right")) {
+				right = true;
+				if (!a && !left)
+					GetComponent<SpriteRenderer> ().sprite = orig;
+			}
+			if (Input.GetKeyUp ("right")) {
+				right = false;
+				if (left || a)
+					GetComponent<SpriteRenderer> ().sprite = origleft;
+			}
 
 
-		float vy = rb.velocity.y;
-		if ((left && right) || (a && d) || (left && d) || (right && a))
-			rb.velocity = new Vector2 (0, vy);
-		else if (left || a) {
-			rb.velocity = new Vector2 (-velocity, vy);
-		} else if (right || d) {
-			rb.velocity = new Vector2 (velocity, vy);
-		}
-		else rb.velocity = new Vector2 (0, vy);
+			float vy = rb.velocity.y;
+			if ((left && right) || (a && d) || (left && d) || (right && a))
+				rb.velocity = new Vector2 (0, vy);
+			else if (left || a) {
+				rb.velocity = new Vector2 (-velocity, vy);
+			} else if (right || d) {
+				rb.velocity = new Vector2 (velocity, vy);
+			} else
+				rb.velocity = new Vector2 (0, vy);
 
 
-		if (Input.GetKeyDown ("space") && canJump) {
-			rb.velocity += new Vector2 (0, jumpVelocity);
-		}
-		//if (rb.position.y < -15f) {
+			if (Input.GetKeyDown ("space") && canJump) {
+				rb.velocity += new Vector2 (0, jumpVelocity);
+			}
+			//if (rb.position.y < -15f) {
 			//rb.position = new Vector3(6.89F, 0.34F, 0);
-		//}
-		//print(canJump);
-		if (rb.rotation == 10.0F || rb.rotation == -10.0F)
-			rot = -rot;
-		rb.rotation += rot;
+			//}
+			//print(canJump);
+			if (rb.rotation == 10.0F || rb.rotation == -10.0F)
+				rot = -rot;
+			rb.rotation += rot;
 
-		if (Input.GetKeyDown ("x")) {
-			if(right || d || GetComponent<SpriteRenderer>().sprite.name == "MrsStrump") GetComponent<SpriteRenderer>().sprite = fist;
-			else if(left || a || GetComponent<SpriteRenderer>().sprite.name == "MrsStrumpleft") GetComponent<SpriteRenderer>().sprite = fistleft;
-			if(kill) Destroy (enemie);
+			if (Input.GetKeyDown ("x")) {
+				if (right || d || GetComponent<SpriteRenderer> ().sprite.name == "MrsStrump")
+					GetComponent<SpriteRenderer> ().sprite = fist;
+				else if (left || a || GetComponent<SpriteRenderer> ().sprite.name == "MrsStrumpleft")
+					GetComponent<SpriteRenderer> ().sprite = fistleft;
+				if (kill)
+					Destroy (enemie);
+			}
+			if (Input.GetKeyUp ("x")) {
+				if (right || d || GetComponent<SpriteRenderer> ().sprite.name == "Fist")
+					GetComponent<SpriteRenderer> ().sprite = orig;
+				else if (left || a || GetComponent<SpriteRenderer> ().sprite.name == "Fistleft")
+					GetComponent<SpriteRenderer> ().sprite = origleft;
+			}
+			if (GetComponent<Rigidbody2D> ().position.y < -15f) {
+				Application.LoadLevel ("Lose");
+				//rb.position = startPos;
+			}
 		}
-		if (Input.GetKeyUp ("x")) {
-			if(right || d || GetComponent<SpriteRenderer>().sprite.name == "Fist") GetComponent<SpriteRenderer> ().sprite = orig;
-			else if(left || a || GetComponent<SpriteRenderer>().sprite.name == "Fistleft") GetComponent<SpriteRenderer> ().sprite = origleft;
-		}
-		if (GetComponent<Rigidbody2D> ().position.y < -15f) {
-			Application.LoadLevel("Lose");
-			//rb.position = startPos;
-		}
-		
 	}
 
 	void OnTriggerEnter2D(Collider2D other)

@@ -13,7 +13,7 @@ public class TriggerBattle : MonoBehaviour {
 	void Update () {
 		if (isInTrigger && Input.GetKeyDown ("up")) {
 			if(Application.loadedLevel != 8) Application.LoadLevel (Application.loadedLevel - 3);
-			else Application.LoadLevel ("win");
+			else Application.LoadLevel ("boss");
 		}
 	}
 
