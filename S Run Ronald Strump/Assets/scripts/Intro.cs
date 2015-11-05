@@ -16,6 +16,8 @@ public class Intro : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if (Input.GetKeyDown ("space") || Input.GetMouseButtonDown (0))
+			Application.LoadLevel ("game");
 		float time = Time.timeSinceLevelLoad;
 		if (time > 4.0F && time < 4.5F) {
 			mrsStrump.transform.position = new Vector3(-13, 0, -5);
